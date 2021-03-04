@@ -18,7 +18,7 @@
       <div class="col-7">
         <?php
         session_destroy();
-        echo"Logout สำเร็จ";
+        echo"ออกจากระบบสำเร็จ";
         echo"<meta http-equiv='refresh' content='1;url=?page=main' />";
         ?>
       </div>

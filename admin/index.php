@@ -101,10 +101,10 @@ body {
 										<span>ข้อมูลการเช่า</span></a>
 						</li>
 
-						<li class="nav-item">
-								<a class="nav-link" href="?page=test">
-										<span>เทส</span></a>
-						</li>
+						<!-- <li class="nav-item">
+								<a class="nav-link" href="?page=damaged_device_info">
+										<span>แจ้งอุปกรณ์เสียหาย</span></a>
+						</li> -->
 
 
 
@@ -125,22 +125,22 @@ body {
 
             <li class="nav-item">
                 <a class="nav-link" href="?page=report_employer">
-                    <span><i class="fas fa-fw fa-folder"></i>สรุปจำนวนผู้ว่าจ้างงาน</span></a>
+                    <span><i class="fas fa-fw fa-folder"></i>รายงานสรุปจำนวน<br>ผู้ว่าจ้างงาน</span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="?page=report_equip_type">
-                    <span><i class="fas fa-fw fa-folder"></i>สถิติการเช่าอุปกรณ์<br>จำแนกตามประเภท</span></a>
+                    <span><i class="fas fa-fw fa-folder"></i>รายงานสถิติการเช่าอุปกรณ์<br>จำแนกตามประเภท</span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="?page=report_equip_rent_month">
-                    <span><i class="fas fa-fw fa-folder"></i>สรุปการเช่าและค่าเช่าอุปกรณ์จำแนกตามเดือน</span></a>
+                    <span><i class="fas fa-fw fa-folder"></i>รายงานสรุปการเช่าและค่าเช่าอุปกรณ์จำแนกตามเดือน</span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="?page=report_damaged_devices">
-                    <span><i class="fas fa-fw fa-folder"></i>อุปกรณ์ที่ชำรุดเสียหาย</span></a>
+                    <span><i class="fas fa-fw fa-folder"></i>รายงานอุปกรณ์ที่ชำรุดเสียหาย</span></a>
             </li>
 
             <!-- <li class="nav-item">

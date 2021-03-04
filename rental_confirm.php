@@ -322,9 +322,11 @@ margin-left: 350px;
  cache:false,
  contentType: false,
  processData: false,
+  
  success: (data) => {
    if (data) {
      Swal.fire({
+         
          position: 'center',
          icon: 'success',
          title: 'Your work has been saved',

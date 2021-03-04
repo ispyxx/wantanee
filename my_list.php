@@ -167,7 +167,7 @@ window.onclick = function(event) {
                       <!-- <th scope="col">รวมราคา (บาท)</th> -->
 
                       <th scope="col">สถานะการเช่า</th>
-                      <th scope="col">สถานะการคืนของ</th>
+                      <!-- <th scope="col">สถานะการคืนของ</th> -->
                       <th scope="col">ดูเพิ่มเติม</th>
                       <th scope="col">แก้ไขข้อมูล</th>
                       <th scope="col">ลบ</th>
@@ -188,9 +188,6 @@ window.onclick = function(event) {
                         <?php
                               $datestart=changeDate($rows["DateStart"]);
                               $dateend=changeDate($rows["DateEnd"]);
-
-
-                              //
                               $between=getNumDay(date('Y-m-d'),$rows["DateStart"]);
 
                               if($rows["Status"]=='2'){
@@ -212,7 +209,7 @@ window.onclick = function(event) {
                         <td><?=$rows["Place"]?></td>
                         <!-- <td><?=number_format($allprice);?></td> -->
                        <td><?=$rows["Status"]?></td>
-                       <td><?=$rows["Status"]?></td>
+                       <!-- <td><?=$rows["Status"]?></td> -->
 
 
 
@@ -221,7 +218,7 @@ window.onclick = function(event) {
                         <!-- <td><a onclick="document.getElementById('id01').style.display='block'" class="btn btn-info btn-lg col-5"><img src="img2/search.png" width="15" height="15"/></a></td> -->
                         <td><a href="?page=rental_more&RentID=<?=$rows['RentID']?>" class="btn btn-info btn-lg col-5"><img src="img2/search.png" width="15" height="15"/></a></td>
                         <td><a   href="?page=rental_edit&RentID=<?=$rows['RentID']?>" class="btn btn-secondary btn-lg col-4 <?php echo ($between<=2) ? 'disabled' : ''; ?>"><img src="img2/edit-w.png" width="15" height="15"/></a></td>
-                        <td><a  href="?page=rental_delete&RentID=<?=$rows['RentID']?>" class="btn btn-danger btn-lg col-5" onclick="return confirm('คุณแน่ใจจะลบจริงหรือไม่')"><img src="img2/del2.png" width="15" height="15"/></a></td>
+                        <td><a  href="?page=rental_delete&RentID=<?=$rows['RentID']?>" class="btn btn-danger btn-lg col-6" onclick="return confirm('คุณแน่ใจจะลบจริงหรือไม่')"><img src="img2/del2.png" width="15" height="15"/></a></td>
                       </tr>
                     </tbody>
                   <?php  }?>

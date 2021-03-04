@@ -397,7 +397,7 @@ body {
                     <select class="form-control" name="ProductTent">
                       <option selected disabled value=""><?=$data[0]['ProductName'];?></option>
                       <?php
-                      $sql="select * from products";
+                      $sql="select * from products where ProductType=1";
                       $result=$db->query($sql);
                       while ($row=$result->fetch_array(MYSQLI_BOTH)){
                         ?>
@@ -423,7 +423,7 @@ body {
                       <option selected disabled value=""><?=$data[1]['ProductName'];?></option>
 
                       <?php
-                      $sql="select * from products";
+                      $sql="select * from products where ProductType=2";
                       $result=$db->query($sql);
                       while ($row=$result->fetch_array(MYSQLI_BOTH)){
                         ?>

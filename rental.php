@@ -173,7 +173,7 @@ body {
                 กำหนดงาน
               </div>
 
-              <div class"from">
+              <div class="from">
                 <div class="row">
                   <div class="col-md-7">
                     เริ่มเมื่อ:&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="DateStart" name="DateStart" style="height: 30px;" autocomplete="off" required>
@@ -201,7 +201,7 @@ body {
                 สถานที่
               </div>
               <br>
-              <div clss"from">
+              <div class="from">
                 <div class="col-12">
                   <input type="text" class="form-control" placeholder="รายละเอียดสถานที่" id="Place" name="Place" autocomplete="off" style="height: 120px;" required>
                 </div> <!-- form-group end.// -->
@@ -236,9 +236,11 @@ body {
                     <select class="form-control" name="ProductTent">
                       <option selected disabled value="">-- ขนาดของเต็นท์ --</option>
                       <?php
-                      $sql="select * from products";
+                      $sql="select * from products where ProductType=1";
                       $result=$db->query($sql);
                       while ($row=$result->fetch_array(MYSQLI_BOTH)){
+
+                    
                         ?>
 
                         <option value="<?php echo $row["ProductID"]; ?>"><?php echo $row["ProductName"]; ?></option>
@@ -264,7 +266,7 @@ body {
                       <option selected disabled value="">-- รูปแบบโต๊ะ --</option>
 
                       <?php
-                      $sql="select * from products";
+                      $sql="select * from products where ProductType=2";
                       $result=$db->query($sql);
                       while ($row=$result->fetch_array(MYSQLI_BOTH)){
                         ?>
@@ -311,27 +313,19 @@ body {
 
             <input type="hidden" name="Status" value="2">
 
-
             <?php
 
             $sql="select * from rent ORDER BY RentID DESC";
             $results=$db->query($sql);
             $row=$results->fetch_array(MYSQLI_BOTH);
 
-
             $rowsID=$row['RentID']+1;
 
             // echo $rows;exit;
 
             ?>
-
             <input type="hidden" name="rentID" value="<?=$rowsID?>">
             <input type="hidden"  name="SignDate"  id="SignDate" value="<?=date('Y-m-d')?>"/>
-
-
-
-
-
           </form>
         </article> <!-- card-body end .// -->
 
@@ -347,11 +341,4 @@ body {
 <br><br>
 <!-- ************************************************  ภาพ -->
 <!--4.3-->
-
-
-
-
-
-
-
 </body>

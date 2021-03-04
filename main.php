@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 </head>
 <body>
   <!-- font TH Baijam -->
@@ -34,7 +35,6 @@
 
 <div id="banner">
 
-  <!-- ======= Hero Section ======= -->
   <!-- <section id="hero"> -->
     <div class="container" id="banner2">
 
@@ -45,8 +45,10 @@
       <button type="button" class="btn btn-success">Success</button> -->
 
     </div>
-      </div>
+</div>
 
+
+ 
   <!-- </section> -->
 
 

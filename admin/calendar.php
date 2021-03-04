@@ -1,135 +1,108 @@
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+ <!-- FullCalendar -->
+ <link href='vendor/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
 
+<!-- Main CSS-->
+<link href="css/theme.css" rel="stylesheet" media="all">
 
-
-
-
-<style>
-
-body {
-  font-family: "Chakra Petch", sans-serif;
-  color: #777;
-}
-
-#margin-1{
-  /* margin-left: 80px; */
-  margin-top: 50px;
-  margin-bottom: 40px;
-}
-#margin-2{
-  margin-left: 130px;
-
-}
-
-
-</style>
-
-<body>
-<div class="container" id="margin-1">
-      <div id="margin-2"><h3>ปฏิทิน</h3></div>
+<style type="text/css">
+    /* force class color to override the bootstrap base rule
+       NOTE: adding 'url: #' to calendar makes this unneeded
+     */
+    .fc-event, .fc-event:hover {
+          color: #fff !important;
+          text-decoration: none;
+    }
+    </style>
+<div class="row">
+    <div class="col">
+      <div class="au-card">
+        <div id="calendar"></div>
+      </div>
+    </div><!-- .col -->
 </div>
-
-  <div class="container col-8">
-<div class="accordion accordion-flush" id="accordionFlushExample">
-
-  <?php
-  $sqls="select orderID, od_date_start,od_date_end,od_place,od_time_start,od_time_end from rent_order order by od_date_start asc";
-  $results=$db->query($sqls);
+<?php
+  $sql = "select DateStart,RentId from rent";
+  $result = $db->query($sql);
   $data=[];
   $i=0;
-  while($rows=$results->fetch_array(MYSQLI_ASSOC)){
-    $data[$i]=$rows;
+  while($row = $result->fetch_assoc()) {
+    $data[$i] = $row;
     $i++;
   }
-  $month=[];
+  $task =[];
   foreach ($data as $key => $value) {
-    $get_date = explode("-",$value['od_date_start']);
-    $month[$get_date[1]]=[];
-
+    $task[$value["DateStart"]] =[];
   }
-  foreach ($month as $key => $value) {
-    $k=0;
-    foreach ($data as $v) {
-      $get_date = explode("-",$v['od_date_start']);
-      $months=$get_date[1];
-      if ($key==$months) {
-        $month[$key][$k]=$v;
-        $k++;
+  foreach ($task as $k => $v) {
+    $run=0;
+    $task[$k] =[];
+    foreach ($data as $key => $value) {
+      if ($k==$value["DateStart"]) {
+        $task[$k][$run] =$value["RentId"];
+        $run++;
       }
     }
   }
-
+  $gettask[]=[];
+  $i=0;
+  foreach ($data as $key => $value) {
+    
+    $gettask[$key]["start"]=$value["DateStart"];
+    $gettask[$key]["title"]="รหัสการเช่า ".$value["RentId"];
+    $gettask[$i]["url"]="#";
+  }
+ 
 ?>
-<?php
-  $thai_month =array(
-  "1"=>"มกราคม",
-  "2"=>"กุมภาพันธ์",
-  "3"=>"มีนาคม",
-  "4"=>"เมษายน",
-  "5"=>"พฤษภาคม",
-  "6"=>"มิถุนายน",
-  "7"=>"กรกฎาคม",
-  "8"=>"สิงหาคม",
-  "9"=>"กันยายน",
-  "10"=>"ตุลาคม",
-  "11"=>"พฤศจิกายน",
-  "12"=>"ธันวาคม"
-  );
-  $i=1;
-foreach ($month as $value) {
+ <!-- Jquery JS-->
+ <script src="vendor/jquery-3.2.1.min.js"></script>
+ <!-- full calendar requires moment along jquery which is included above -->
+ <script src="vendor/fullcalendar-3.10.0/lib/moment.min.js"></script>
+    <script src="vendor/fullcalendar-3.10.0/fullcalendar.js"></script>
 
-    ?>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#month<?=$i?>" aria-expanded="false" aria-controls="flush-collapseOne">
-        ประจำเดือน <?=$thai_month[$i]?>
-      </button>
-    </h2>
-    <div id="month<?=$i?>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-
-        <div class="container">
-        <table class="table table-striped table-hover"style="width:100%">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">วันที่เริ่ม</th>
-              <th scope="col">เวลาเริ่ม</th>
-              <th scope="col">วันที่สิ้นสุด</th>
-              <th scope="col">เวลาสิ้นสุด</th>
-              <th scope="col">สถานที่</th>
-              <th scope="col">ดูเพิ่มเติม</th>
-
-            </tr>
-          </thead>
-
-          <tbody>
-            <?php foreach ($value as $key => $v): ?>
-            <tr>
-              <td><?=$v['od_date_start']?></td>
-              <td><?=$v['od_time_start']?></td>
-              <td><?=$v['od_date_end']?></td>
-              <td><?=$v['od_time_end']?></td>
-              <td><?=$v['od_place']?></td>
-              <td><a href="?page=info_show&orderID=<?=$v['orderID']?>" class="btn btn-info btn-lg "><img src="img/search.png" width="15" height="15"/></td>
-
-            </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-        </div>
-      </div>
-  </div>
-</div>
-<?php
-$i++;
-}
-
-?>
-</div>
-</div>
+    <script type="text/javascript">
 
 
-</body>
+
+
+$(function() {
+  var task = <?php echo json_encode($gettask); ?>;
+  // alert(task[0].start);
+  var i=0;
+  task.forEach(element => {
+    if (element=="start") {
+      task[i].start = moment().format(start);
+    i++;
+    }
+    
+  });
+  console.log(task[0].start);
+  // for now, there is something adding a click handler to 'a'
+  var tues = moment().day(2).hour(19);
+
+  // build trival night events for example data
+  var events =  task;
+
+  var trivia_nights = []
+
+  // for(var i = 1; i <= 4; i++) {
+  //   var n = tues.clone().add(i, 'weeks');
+  //   console.log("isoString: " + n.toISOString());
+  //   trivia_nights.push({
+  //     title: 'Trival Night @ Pub XYZ',
+  //     start: n.toISOString(),
+  //     allDay: false,
+  //     url: '#'
+  //   });
+  // }
+
+  // setup a few events
+  $('#calendar').fullCalendar({
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay,listWeek'
+    },
+    events: events.concat(trivia_nights)
+  });
+});
+    </script>

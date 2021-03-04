@@ -48,6 +48,7 @@
 			<table id="customer-grid"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
 				<thead>
 					<tr>
+						<th>รหัสการเช่า</th>
 						<th>เริ่ม</th>
 						<th>สิ้นสุด</th>
 						<th>สถานที่</th>
@@ -95,6 +96,7 @@
 						}
 
 						echo "<tr>";
+						echo "<td>" .$row["RentID"] ."</td> ";
 						echo "<td>" .$datestart ."</td> ";
 						echo "<td>" .$dateend ."</td> ";
 						echo "<td>" .$row["Place"] ."</td> ";

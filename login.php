@@ -133,12 +133,12 @@ body {
 										$num=$result->num_rows;
 										$row=$result->fetch_array(MYSQLI_BOTH);
 										if($num<=0){
-											echo "*Username หรือ Password ไม่ถูกต้อง";
+											echo "*ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง";
 											echo "<meta http-equiv='refresh' content='2;url=?page=login' />";
 										}
 										else{
 
-											echo "login สำเร็จ";
+											echo "เข้าสู่ระบบสำเร็จ";
 											@session_start();
 											// $_SESSION["sess_userid"]=session_id();
 											$_SESSION["sess_memberID"]=session_id();
